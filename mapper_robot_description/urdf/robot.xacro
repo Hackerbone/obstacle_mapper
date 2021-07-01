@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rob">
+
+    <!-- Including plugins and material files -->
+    <xacro:include filename="$(find mapper_robot_description)/urdf/materials.gazebo" />
+    <xacro:include filename="$(find mapper_robot_description)/urdf/plugins.gazebo" />
+    <!-- <xacro:include filename="$(find mapper_robot_gazebo)/urdf/plugins.gazebo" /> -->
+
+
+    <!--  Chassis link -->
+    <link name="base_link">
+        <visual>
+            <origin rpy="0  0  0" xyz="0 0 -0.1" />
+            <geometry>
+                <box size="1 0.8 0.4" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="1 0.8 0.4" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1" />
+            <origin rpy="0  0  0" xyz="0  0  0" />
+            <inertia ixx="0.166666666667" iyy="0.166666666667" izz="0.166666666667" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+    </link>
+
+    <!-- FRONT IR -->
+
+    <joint name="ir_front_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.5 0 0" />
+        <parent link="base_link" />
+        <child link="base_ir_front" />
+    </joint>
+
+    <link name="base_ir_front">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </visual>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <!-- LEFT IR -->
+
+    <joint name="ir_left_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 -1.57079632679" xyz="0 -0.4 0" />
+        <parent link="base_link" />
+        <child link="base_ir_left" />
+    </joint>
+
+    <link name="base_ir_left">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </visual>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <!-- Right IR -->
+
+    <joint name="ir_right_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 1.57079632679" xyz="0 0.4 0" />
+        <parent link="base_link" />
+        <child link="base_ir_right" />
+    </joint>
+
+    <link name="base_ir_right">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.01 0.01 0.01" />
+            </geometry>
+        </visual>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+
+    <!-- Wheel link macro -->
+    <xacro:macro name="wheels" params="name">
+        <link name="${name}">
+            <inertial>
+                <mass value="0.01" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.2" length="0.1" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.2" length="0.1" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+    <!-- Wheels -->
+    <xacro:wheels name="f_right" />
+    <xacro:wheels name="f_left" />
+
+    <!-- Wheel joints macro -->
+    <xacro:macro name="wheel_joints" params="num link x y">
+        <joint name="j_s${num}" type="continuous">
+            <parent link="base_link" />
+            <child link="${link}" />
+            <origin xyz="${x} ${y} -0.3" rpy="1.5708 0 0" />
+            <axis xyz="0 0 0.4" rpy="0 0 0" />
+        </joint>
+    </xacro:macro>
+    <!-- Wheel joints -->
+    <xacro:wheel_joints num="1" link="f_left" x="-0.15" y="0.45" />
+    <xacro:wheel_joints num="2" link="f_right" x="-0.15" y="-0.45" />
+
+    <!-- Caster -->
+
+    <xacro:macro name="caster" params="name">
+        <link name="${name}">
+            <inertial>
+                <mass value="0.5" />
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="1.57079632679 0 0" />
+                <geometry>
+                    <cylinder radius="0.1" length="0.1" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="1.57079632679 0 0" />
+                <geometry>
+                    <cylinder radius="0.1" length="0.1" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+
+    <xacro:caster name="caster_wheel" />
+
+    <joint name="caster_wheel_joint" type="continuous">
+        <axis xyz="0 1 0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="caster_wheel" />
+        <origin xyz="0.4 0 -0.4" rpy="0 0 0" />
+    </joint>
+
+
+    <!-- <link name="caster_wheel">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.1" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.1" />
+            </geometry>
+        </collision>
+        <xacro:sphere_inertia m="5" r="0.1" />
+    </link> -->
+
+
+    <!-- Camera Link -->
+    <!-- <xacro:property name="camera_link" value="0.05" />
+    <link name="camera_link">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${camera_link} ${camera_link} ${camera_link}" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${camera_link} ${camera_link} ${camera_link}" />
+            </geometry>
+            <material name="red" />
+        </visual>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link> -->
+    <!-- Camera joint -->
+    <!-- <joint name="camera_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin xyz="-0.5 0 0.3" rpy="0 0 3.14" />
+        <parent link="base_link" />
+        <child link="camera_link" />
+    </joint>
+ -->
+
+    <!-- Hokuyo Laser Link -->
+    <!-- <link name="hokuyo">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.1 0.1 0.1" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://robot_struct/meshes/hokuyo.dae" />
+            </geometry>
+        </visual>
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link> -->
+    <!-- Laser joint -->
+    <!-- <joint name="hokuyo_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin xyz="0 0 0.38" rpy="0 0 3.14" />
+        <parent link="base_link" />
+        <child link="hokuyo" />
+    </joint> -->
+
+
+</robot>

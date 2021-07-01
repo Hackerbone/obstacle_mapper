@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- spawning the bot in gazebo and converting to urdf -->
+    <param name="walls" command="$(find xacro)/xacro $(find mapper_robot_gazebo)/worlds/walls.world" />
+    <arg name="x" value="0" />
+    <arg name="y" value="0" />
+    <arg name="z" value="0" />
+    <node name="wall_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param walls -model walls -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+</launch>

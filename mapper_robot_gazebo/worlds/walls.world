@@ -1,0 +1,484 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- Sun and ground plane -->
+    <include>
+      <uri>
+model://sun
+</uri>
+    </include>
+    <include>
+      <uri>
+model://ground_plane
+</uri>
+    </include>
+
+    <!-- Initial camera position -->
+    <gui fullscreen='0'>
+      <camera name='world_camera'>
+        <pose>0 4 0 0.000000 1 -4</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+
+    <!-- Walls -->
+    <model name="v1">
+      <pose>0 10.25 2.5 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>500.0</mass>
+          <inertia>
+            <ixx>0.51875</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.083</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.083</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/material/scripts/gazebo.material</uri>
+              <name>Gazebo/Bricks</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="v2">
+      <pose>0 -10.25 2.5 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>500.0</mass>
+          <inertia>
+            <ixx>0.51875</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.083</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.083</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/material/scripts/gazebo.material</uri>
+              <name>Gazebo/Bricks</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="h1">
+      <pose>-10.25 0 2.5 0 0 1.57079632679
+      </pose>
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>500.0</mass>
+          <inertia>
+            <ixx>0.51875</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.083</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.083</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/material/scripts/gazebo.material</uri>
+              <name>Gazebo/Bricks</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="h2">
+      <pose>10.25 0 2.5 0 0 1.57079632679</pose>
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>500.0</mass>
+          <inertia>
+            <ixx>0.51875</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.083</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.083</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.5 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/material/scripts/gazebo.material</uri>
+              <name>Gazebo/Bricks</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <model name="obstacle_1">
+      <pose>7 1 2.5 0 0 1.57079632679</pose>
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>500.0</mass>
+          <inertia>
+            <ixx>0.51875</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.083</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.083</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>4 6 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>4 6 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/material/scripts/gazebo.material</uri>
+              <name>Gazebo/Bricks</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_2">
+      <pose>-7 -4 2.5 0 0 1.57079632679</pose>
+      <static>true</static>
+      <link name="link">
+        <inertial>
+          <mass>500.0</mass>
+          <inertia>
+            <ixx>0.51875</ixx>
+            <ixy>0.0</ixy>
+            <ixz>0.0</ixz>
+            <iyy>0.083</iyy>
+            <iyz>0.0</iyz>
+            <izz>0.083</izz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2 6 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2 6 5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/material/scripts/gazebo.material</uri>
+              <name>Gazebo/Bricks</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- <model name="v2">
+    <pose>-4 5 0.5 0 0 0</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>500.0</mass>
+        <inertia> 
+          <ixx>0.51875</ixx>       
+          <ixy>0.0</ixy>         
+          <ixz>0.0</ixz>         
+          <iyy>0.083</iyy>       
+          <iyz>0.0</iyz>         
+          <izz>0.083</izz>       
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>8 0.5 5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>8 0.5 5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/material/scripts/gazebo.material</uri>
+            <name>Gazebo/Bricks</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model>
+
+<model name="h1">
+    <pose>0 -7.3 0.5 0 0 1.5708</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>500.0</mass>
+        <inertia> 
+          <ixx>0.51875</ixx>       
+          <ixy>0.0</ixy>         
+          <ixz>0.0</ixz>         
+          <iyy>0.083</iyy>       
+          <iyz>0.0</iyz>         
+          <izz>0.083</izz>       
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>5 0.5 5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>5 0.5 5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/material/scripts/gazebo.material</uri>
+            <name>Gazebo/Bricks</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model>
+
+<model name="v3">
+    <pose>3 -5 0.5 0 0 0</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>500.0</mass>
+        <inertia> 
+          <ixx>0.51875</ixx>
+          <ixy>0.0</ixy> 
+          <ixz>0.0</ixz>  
+          <iyy>0.083</iyy>
+          <iyz>0.0</iyz>    
+          <izz>0.083</izz>  
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>6 0.5 5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>6 0.5 5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/material/scripts/gazebo.material</uri>
+            <name>Gazebo/Bricks</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model>
+
+<model name="h2">
+    <pose>-3 0 0.5 0 0 1.5708</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>500.0</mass>
+        <inertia> 
+          <ixx>0.51875</ixx>       
+          <ixy>0.0</ixy>         
+          <ixz>0.0</ixz>         
+          <iyy>0.083</iyy>       
+          <iyz>0.0</iyz>         
+          <izz>0.083</izz>       
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>10.25 0.5 5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>10.25 0.5 5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/material/scripts/gazebo.material</uri>
+            <name>Gazebo/Bricks</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model> -->
+
+    <!-- <model name="h3">
+    <pose>6 -2.25 0.5 0 0 1.5708</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>500.0</mass>
+        <inertia> 
+          <ixx>0.51875</ixx>       
+          <ixy>0.0</ixy>         
+          <ixz>0.0</ixz>         
+          <iyy>0.083</iyy>       
+          <iyz>0.0</iyz>         
+          <izz>0.083</izz>       
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>6 0.5 5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>6 0.5 5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/material/scripts/gazebo.material</uri>
+            <name>Gazebo/Bricks</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model> -->
+
+    <!-- <model name="angle_45">
+    <pose>4.65 2 0.5 0 0 2.3562</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>500.0</mass>
+        <inertia> 
+          <ixx>0.51875</ixx>       
+          <ixy>0.0</ixy>         
+          <ixz>0.0</ixz>         
+          <iyy>0.083</iyy>       
+          <iyz>0.0</iyz>         
+          <izz>0.083</izz>       
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>4 0.5 5</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>4 0.5 5</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/material/scripts/gazebo.material</uri>
+            <name>Gazebo/Bricks</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model> -->
+
+  </world>
+</sdf>
