@@ -19,6 +19,7 @@
     <arg name="gui" default="false" />
     <arg name="pause" default="false" />
     <!-- Change "walls.world to line.world" if you need a long straight wall -->
+    <!-- <arg name="world" default="$(find mapper_robot_gazebo)/worlds/line.world" /> -->
     <arg name="world" default="$(find mapper_robot_gazebo)/worlds/walls.world" />
 
     <!-- Including gazebo_ros launcher from package-->
